@@ -1,0 +1,21 @@
+.container {
+  height: 4rem;
+  width: 16.75rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: var(--yellow-500);
+  color: var(--gray-900);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 2rem;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}

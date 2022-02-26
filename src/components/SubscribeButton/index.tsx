@@ -1,3 +1,9 @@
+import styles from "./styles.module.scss"
+
 export const SubscribeButton = () => {
-  return <button type="button">Subscribe Now</button>
+  return (
+    <button className={styles.container} type="button">
+      Subscribe Now
+    </button>
+  )
 }

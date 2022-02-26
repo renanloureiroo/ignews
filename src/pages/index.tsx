@@ -4,6 +4,7 @@ import Head from "next/head"
 import styles from "./home.module.scss"
 
 import GirlSvg from "../public/images/avatar.svg"
+import { SubscribeButton } from "../components/SubscribeButton"
 
 export default function Home() {
   return (
@@ -23,6 +24,8 @@ export default function Home() {
             Get access to all publications <br />
             <span>for $9,90 month</span>
           </p>
+
+          <SubscribeButton />
         </section>
         <Image src={GirlSvg} alt="Girl coding" />
       </main>
