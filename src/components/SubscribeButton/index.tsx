@@ -1,4 +1,6 @@
 import { signIn, useSession } from "next-auth/react"
+import { useState } from "react"
+import ReactLoading from "react-loading"
 import { api } from "../../service/api"
 import { getStripeJs } from "../../service/stripeJs"
 import styles from "./styles.module.scss"
@@ -10,7 +12,11 @@ interface SubscribeProps {
 export const SubscribeButton = ({}: SubscribeProps) => {
   const { data: session } = useSession()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   async function handleSubscribe() {
+    setIsLoading(true)
+
     if (!session) {
       signIn("github")
       return
@@ -26,6 +32,8 @@ export const SubscribeButton = ({}: SubscribeProps) => {
       stripe.redirectToCheckout({ sessionId })
     } catch (error) {
       alert(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -34,8 +42,13 @@ export const SubscribeButton = ({}: SubscribeProps) => {
       onClick={handleSubscribe}
       className={styles.container}
       type="button"
+      disabled={isLoading}
     >
-      Subscribe Now
+      {isLoading ? (
+        <ReactLoading type="spin" height={30} width={30} />
+      ) : (
+        "Subscribe Now"
+      )}
     </button>
   )
 }
