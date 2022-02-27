@@ -10,7 +10,7 @@ type User = {
     id: string
   }
   data: {
-    costumerId: string
+    stripe_customer_id: string
   }
 }
 
@@ -25,10 +25,11 @@ const subscribe = async (
       q.Get(q.Match(q.Index("user_by_email"), q.Casefold(session.user.email)))
     )
 
-    let costumerId = user.data.costumerId
+    let costumerId = user.data.stripe_customer_id
 
     if (!costumerId) {
       const stripeCustomer = await stripe.customers.create({
+        name: session.user.name,
         email: session.user.email,
         //metadata
       })
