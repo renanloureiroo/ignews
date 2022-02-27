@@ -1,7 +1,18 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { getSession } from "next-auth/react"
+import { query as q } from "faunadb"
 
 import { stripe } from "../../service/stripe"
+import { fauna } from "../../service/fauna"
+
+type User = {
+  ref: {
+    id: string
+  }
+  data: {
+    costumerId: string
+  }
+}
 
 const subscribe = async (
   request: NextApiRequest,
@@ -10,13 +21,30 @@ const subscribe = async (
   if (request.method === "POST") {
     const session = await getSession({ req: request })
 
-    const stripeCustomer = await stripe.customers.create({
-      email: session.user.email,
-      //metadata
-    })
+    const user = await fauna.query<User>(
+      q.Get(q.Match(q.Index("user_by_email"), q.Casefold(session.user.email)))
+    )
+
+    let costumerId = user.data.costumerId
+
+    if (!costumerId) {
+      const stripeCustomer = await stripe.customers.create({
+        email: session.user.email,
+        //metadata
+      })
+      costumerId = stripeCustomer.id
+
+      await fauna.query(
+        q.Update(q.Ref(q.Collection("users"), user.ref.id), {
+          data: {
+            stripe_customer_id: stripeCustomer.id,
+          },
+        })
+      )
+    }
 
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
-      customer: stripeCustomer.id,
+      customer: costumerId,
       mode: "subscription",
       payment_method_types: ["card"],
       billing_address_collection: "required",
