@@ -13,9 +13,10 @@
   color: var(--white);
   font-weight: bold;
 
-  svg {
-    width: 20px;
-    height: 20px;
+  img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 10px;
   }
 
   &:hover {
