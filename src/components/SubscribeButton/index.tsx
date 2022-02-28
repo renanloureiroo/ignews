@@ -1,4 +1,5 @@
 import { signIn, useSession } from "next-auth/react"
+import { useRouter } from "next/router"
 import { useState } from "react"
 import ReactLoading from "react-loading"
 import { api } from "../../service/api"
@@ -11,6 +12,7 @@ interface SubscribeProps {
 
 export const SubscribeButton = ({}: SubscribeProps) => {
   const { data: session } = useSession()
+  const router = useRouter()
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -19,6 +21,12 @@ export const SubscribeButton = ({}: SubscribeProps) => {
 
     if (!session) {
       signIn("github")
+      return
+    }
+
+    if (session.activeSubscription) {
+      router.push("/posts")
+      setIsLoading(false)
       return
     }
 

@@ -20,7 +20,6 @@ interface Props {
 }
 
 export default function Posts({ posts }: Props) {
-  console.log(posts)
   return (
     <>
       <Head>
