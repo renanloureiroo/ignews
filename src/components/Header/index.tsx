@@ -8,8 +8,6 @@ import { SignInButton } from "../SignInButton"
 import styles from "./styles.module.scss"
 
 export const Header = () => {
-  const { asPath } = useRouter()
-  console.log(asPath)
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -25,7 +23,7 @@ export const Header = () => {
             <a>Home</a>
           </ActiveLink>
 
-          <ActiveLink activeClassName={styles.active} href="/posts" prefetch>
+          <ActiveLink activeClassName={styles.active} href="/posts">
             <a>Posts</a>
           </ActiveLink>
         </nav>

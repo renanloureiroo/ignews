@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react"
+import Image from "next/image"
 
 import { FaGithub } from "react-icons/fa"
 import { FiX } from "react-icons/fi"
@@ -9,7 +10,12 @@ export const SignInButton = () => {
   return session ? (
     <button type="button" className={styles.container}>
       {/* <FaGithub color="#04D361" /> */}
-      <img src={session.user.image} alt="User photo" />
+      <Image
+        width="40px"
+        height="40px"
+        src={session.user.image}
+        alt="User photo"
+      />
       {session.user.name}
       <FiX color="#737380" onClick={() => signOut()} />
     </button>
