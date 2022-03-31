@@ -2,8 +2,8 @@ import { signIn, useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import ReactLoading from "react-loading"
-import { api } from "../../service/api"
-import { getStripeJs } from "../../service/stripeJs"
+import { api } from "../../services/api"
+import { getStripeJs } from "../../services/stripeJs"
 import styles from "./styles.module.scss"
 
 export const SubscribeButton = () => {

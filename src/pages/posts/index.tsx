@@ -4,7 +4,7 @@ import Head from "next/head"
 import Prismic from "@prismicio/client"
 import { RichText } from "prismic-dom"
 
-import { getPrismicClient } from "../../service/prismic"
+import { getPrismicClient } from "../../services/prismic"
 import styles from "./styles.module.scss"
 import Link from "next/link"
 
