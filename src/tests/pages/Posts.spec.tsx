@@ -45,12 +45,12 @@ describe("Posts page", () => {
       expect.objectContaining({
         props: {
           posts: [
-            {
+            expect.objectContaining({
               slug: "my-new-post",
               title: "My new post",
               excerpt: "Content my post",
               updatedAt: "01 de abril de 2022",
-            },
+            }),
           ],
         },
       })

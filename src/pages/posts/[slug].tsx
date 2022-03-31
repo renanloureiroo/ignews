@@ -28,6 +28,7 @@ export default function Post({ post }: PostProps) {
           <time>{post.updatedAt}</time>
 
           <div
+            data-testid="content"
             className={styles.postContent}
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
@@ -42,8 +43,8 @@ export const getServerSideProps: GetServerSideProps = async ({
   params,
 }) => {
   const session = await getSession({ req })
+
   const { slug } = params
-  console.log(session)
 
   if (!session?.activeSubscription) {
     return {
