@@ -22,6 +22,7 @@ Um blog por assinatura, direcionado ao universo React.
 * [Next.js](https://nextjs.org/)
 * [Sass](https://sass-lang.com/)
 * [Prismic](https://prismic.io/)
+* [Fauna](https://fauna.com/)
 
 # Demonstration 🎥 
 
@@ -62,6 +63,3 @@ https://user-images.githubusercontent.com/63200402/160454781-54ca079d-16b2-4771-
   # Run application
   $ yarn dev
 ```
-
-# License
-[MIT](https://choosealicense.com/licenses/mit/)
