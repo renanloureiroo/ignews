@@ -28,11 +28,14 @@ export const SubscribeButton = () => {
 
     try {
       const response = await api.post("/subscribe")
+      console.log("response", response)
 
       const { sessionId } = response.data
 
-      const stripe = await getStripeJs()
+      console.log(sessionId)
 
+      const stripe = await getStripeJs()
+      console.log(stripe)
       stripe.redirectToCheckout({ sessionId })
     } catch (error) {
       alert(error.message)

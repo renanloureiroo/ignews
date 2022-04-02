@@ -1,12 +1,19 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent, act } from "@testing-library/react"
 import { mocked } from "jest-mock"
 import { signIn, useSession } from "next-auth/react"
 import { useRouter } from "next/router"
+
 import { SubscribeButton } from "."
 
-jest.mock("next-auth/react")
+import { api } from "../../services/api"
+import { getStripeJs } from "../../services/stripeJs"
 
+jest.mock("next-auth/react")
+jest.mock("../../services/api")
+jest.mock("../../services/stripeJs")
 jest.mock("next/router")
+
+const apiMocked = api as jest.Mocked<typeof api>
 
 describe("SubscribeButton component", () => {
   it("renders correctly", () => {

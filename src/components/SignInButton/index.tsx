@@ -9,7 +9,6 @@ export const SignInButton = () => {
 
   return session ? (
     <button type="button" className={styles.container}>
-      {/* <FaGithub color="#04D361" /> */}
       <Image
         width="40px"
         height="40px"
@@ -24,6 +23,7 @@ export const SignInButton = () => {
       onClick={() => signIn("github")}
       type="button"
       className={styles.container}
+      // name="Sign in With Github"
     >
       <FaGithub color="#eba417" /> Sign in With Github
     </button>

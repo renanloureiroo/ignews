@@ -25,5 +25,8 @@ describe("Header component", () => {
 
     expect(screen.getByText("Home")).toBeInTheDocument()
     expect(screen.getByText("Posts")).toBeInTheDocument()
+    expect(
+      screen.getByRole("button", { name: /sign in with github/i })
+    ).toBeInTheDocument()
   })
 })
